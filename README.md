@@ -1,13 +1,19 @@
-# Base de Datos II - 7° Programación
+# Base de Datos II - 7° "C" Programación
 
 ## Año 2023
 
 Repositorio de GitHub donde se encuentran todos los trabajos y clases de BD II
 
-### Carpetas:
-- **Clases:** Aquí estarán los ejercicios semanales subidos en el repositorio [https://github.com/alexisfr/itsv-db-2]
+---
+
+### Carpetas
+
+- **Clases:** Aquí estarán los ejercicios semanales subidos en [*este repositorio*](https://github.com/alexisfr/itsv-db-2).
 - **Repaso:** Primera actividad del año, un breve repaso de lo que vimos y realizamos el año anterior (2022)
+- **TPI:** Trabajo Integrador sobre analísis de caso y resolución de problemática. ***[Fecha Límite 29/3]***
 
-*Con cada nuevo archivo se hará una actualización de este archivo
+---
 
-**Copyright © 2023 ITSVillada 7C Marquez.** *All rights reserved*
+> Con cada nuevo fichero o carpeta se hará una actualización de este archivo explicando su contenido
+
+**Copyright © 2023 ITSVillada Marquez, Lisandro.** *All rights reserved*
