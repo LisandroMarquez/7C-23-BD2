@@ -3,6 +3,7 @@ drop database if exists class03;
 create database class03;
 use class03;
 
+/* TABLES */
 create table country(
 	id int primary key auto_increment,
 	country varchar(40),
@@ -157,3 +158,91 @@ create table film_actor(
 	constraint film_id3 foreign key (film_id3) references film(id),
 	constraint actor_id foreign key (actor_id) references actor(id));
 describe film_actor;
+
+/* INSERTS */
+/* Insertar datos en la tabla country */
+insert into country (country, last_update) values
+('Estados Unidos', now()),
+('Canadá', now()),
+('México', now());
+
+/* Insertar datos en la tabla city */
+insert into city (city, country_id, last_update) values
+('Nueva York', 1, now()),
+('Toronto', 2, now()),
+('Ciudad de México', 3, now());
+
+/* Insertar datos en la tabla address */
+insert into address (address, district, city_id, postal_code, phone, location, last_update) values
+('123 Main St', 'Centro', 1, '1001', '555-1234', '123.456, -789.012', now()),
+('456 Yonge St', 'Centro', 2, 'M4Y1', '555-5678', '456.789, -123.456', now()),
+('789 Reforma', 'Centro', 3, '6000', '555-9012', '789.012, -345.678', now());
+
+/* Insertar datos en la tabla store */
+insert into store (manager_staff_id, address_id, last_update) values
+(1, 1, now()),
+(2, 2, now());
+
+/* Insertar datos en la tabla staff */
+insert into staff (first_name, last_name, address_id2, picture, email, store_id, active, username, password, last_update) values
+('John', 'Doe', 1, 'john.jpg', 'john.doe@example.com', 1, true, 'johndoe', 'password', now()),
+('Jane', 'Smith', 2, 'jane.jpg', 'jane.smith@example.com', 2, true, 'janesmith', 'password', now());
+
+/* Insertar datos en la tabla customer */
+insert into customer (store_id2, first_name, last_name, email, address_id3, active, create_date, last_update) values
+(1, 'Bob', 'Johnson', 'bob.johnson@example.com', 3, true, now(), now()),
+(2, 'Alice', 'Williams', 'alice.williams@example.com', 1, true, now(), now());
+
+/* Insertar datos en la tabla language */
+insert into language (name, last_update) values
+('Inglés', now()),
+('Francés', now()),
+('Español', now());
+
+/* Insertar datos en la tabla film */
+insert into film (title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features, last_update) values
+('Titanic', 'Una historia de amor en el Titanic', '1997-12-19', 1, null, 3, 4, 194, 19.99, 'PG-13', 'Comentarios', now()),
+('La Bella y la Bestia', 'Un cuento de hadas de amor verdadero', '1991-11-22', 2, null, 5, 3, 90, 14.99, 'G', 'Comentarios', now()),
+('El Mariachi', 'Un músico solitario busca venganza en una ciudad fronteriza', '1992-09-04', 3, null, 7, 2, 81, 9.99, 'R', 'Comentarios', now());
+
+/* Insertar datos en la tabla inventory */
+INSERT INTO inventory (film_id, store_id3, last_update) VALUES
+(1, 1, NOW()),
+(2, 2, NOW()),
+(3, 1, NOW());
+
+/* Insertar datos en la tabla rental */
+INSERT INTO rental (rental_date, inventory_id, customer_id, staff_id, last_update) VALUES
+('2022-01-01', 1, 1, 1, NOW()),
+('2022-02-01', 2, 2, 2, NOW());
+
+/* Insertar datos en la tabla payment */
+INSERT INTO payment (customer_id2, staff_id2, rental_id, amount, payment_date, last_update) VALUES
+(1, 1, 1, 4.99, '2022-01-02', NOW()),
+(2, 2, 2, 3.99, '2022-02-02', NOW());
+
+/* Insertar datos en la tabla category */
+INSERT INTO category (name, last_update) VALUES
+('Comedy', NOW()),
+('Drama', NOW()),
+('Action', NOW()),
+('Sci-Fi', NOW());
+
+/* Insertar datos en la tabla film_category */
+INSERT INTO film_category (film_id2, category_id, last_update) VALUES
+(1, 1, NOW()),
+(2, 2, NOW()),
+(3, 3, NOW());
+
+/* Insertar datos en la tabla actor */
+INSERT INTO actor (first_name, last_name, last_update) VALUES
+('Johnny', 'Depp', NOW()),
+('Tom', 'Hanks', NOW()),
+('Meryl', 'Streep', NOW()),
+('Johnny', 'Null', NOW());
+
+/* Insertar datos en la tabla film_actor */
+INSERT INTO film_actor (film_id3, actor_id, last_update) VALUES
+(1, 1, NOW()),
+(2, 2, NOW()),
+(3, 3, NOW());
