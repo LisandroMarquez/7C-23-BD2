@@ -41,7 +41,7 @@ SELECT concat(a.first_name, ' ', a.last_name) as full_name
 FROM actor a
 WHERE EXISTS    (SELECT *
                 FROM film f JOIN film_actor fm on f.id = fm.film_id3
-                WHERE f.id = fm.film_id3
+                WHERE f.id = fm.film_id
                 AND a.id = fm.actor_id
                 AND (f.title = 'BETRAYED REAR' or f.title = 'CATCH AMISTAD')
 );
@@ -52,7 +52,7 @@ SELECT concat(a.first_name, ' ', a.last_name) as full_name
 FROM actor a
 WHERE EXISTS    (SELECT *
                 FROM film f JOIN film_actor fm on f.id = fm.film_id3
-                WHERE f.id = fm.film_id3
+                WHERE f.id = fm.film_id
                 AND a.id = fm.actor_id
                 AND (f.title = 'BETRAYED REAR' AND NOT f.title = 'CATCH AMISTAD')
 );
@@ -63,7 +63,7 @@ SELECT concat(a.first_name, ' ', a.last_name) as full_name
 FROM actor a
 WHERE EXISTS    (SELECT *
                 FROM film f JOIN film_actor fm on f.id = fm.film_id3
-                WHERE f.id = fm.film_id3
+                WHERE f.id = fm.film_id
                 AND a.id = fm.actor_id
                 AND (f.title = 'BETRAYED REAR' AND f.title = 'CATCH AMISTAD')
 );
@@ -74,7 +74,7 @@ SELECT concat(a.first_name, ' ', a.last_name) as full_name
 FROM actor a
 WHERE NOT EXISTS    (SELECT *
                     FROM film f JOIN film_actor fm on f.id = fm.film_id3
-                    WHERE f.id = fm.film_id3
+                    WHERE f.id = fm.film_id
                     AND a.id = fm.actor_id
                     AND (f.title = 'BETRAYED REAR' or f.title = 'CATCH AMISTAD')
 );

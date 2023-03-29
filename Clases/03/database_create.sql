@@ -43,7 +43,7 @@ create table staff(
 	id int primary key auto_increment,
 	first_name varchar(40),
 	last_name varchar(40),
-	address_id2 int,
+	address_id int,
 	picture varchar(50),
 	email varchar(60),
 	store_id int,
@@ -51,22 +51,22 @@ create table staff(
 	username varchar(30),
 	password varchar(30),
 	last_update datetime,
-	constraint address_id2 foreign key (address_id2) references address(id),
+	constraint address_id2 foreign key (address_id) references address(id),
 	constraint store_id foreign key (store_id) references store(id));
 describe staff;
 
 create table customer(
 	id int primary key auto_increment,
-	store_id2 int,
+	store_id int,
 	first_name varchar(40),
 	last_name varchar(40),
 	email varchar(60),
-	address_id3 int,
+	address_id int,
 	active bool,
 	create_date datetime,
 	last_update datetime,
-	constraint address_id3 foreign key (address_id3) references address(id),
-	constraint store_id2 foreign key (store_id2) references store(id));
+	constraint address_id3 foreign key (address_id) references address(id),
+	constraint store_id2 foreign key (store_id) references store(id));
 describe customer;
 
 create table language(
@@ -96,10 +96,10 @@ describe film;
 create table inventory(
 	id int primary key auto_increment,
 	film_id int,
-	store_id3 int,
+	store_id int,
 	last_update datetime,
 	constraint film_id foreign key (film_id) references film(id),
-	constraint store_id3 foreign key (store_id3) references store(id));
+	constraint store_id3 foreign key (store_id) references store(id));
 describe inventory;
 
 create table rental(
@@ -117,15 +117,15 @@ describe rental;
 
 create table payment(
 	id int primary key auto_increment,
-	customer_id2 int,
-	staff_id2 int,
+	customer_id int,
+	staff_id int,
 	rental_id int,
 	amount float,
 	payment_date datetime,
 	last_update datetime,
 	constraint rental_id foreign key (rental_id) references rental(id),
-	constraint customer_id2 foreign key (customer_id2) references customer(id),
-	constraint staff_id2 foreign key (staff_id2) references staff(id));
+	constraint customer_id2 foreign key (customer_id) references customer(id),
+	constraint staff_id2 foreign key (staff_id) references staff(id));
 describe rental;
 
 create table category(
@@ -136,10 +136,10 @@ describe category;
 
 create table film_category(
 	id int primary key auto_increment,
-	film_id2 int,
+	film_id int,
 	category_id int,
 	last_update datetime,
-	constraint film_id2 foreign key (film_id2) references film(id),
+	constraint film_id2 foreign key (film_id) references film(id),
 	constraint category_id foreign key (category_id) references category(id));
 describe film_category;
 
@@ -152,10 +152,10 @@ describe actor;
 
 create table film_actor(
 	id int primary key auto_increment,
-	film_id3 int,
+	film_id int,
 	actor_id int,
 	last_update datetime,
-	constraint film_id3 foreign key (film_id3) references film(id),
+	constraint film_id3 foreign key (film_id) references film(id),
 	constraint actor_id foreign key (actor_id) references actor(id));
 describe film_actor;
 
@@ -184,12 +184,12 @@ insert into store (manager_staff_id, address_id, last_update) values
 (2, 2, now());
 
 /* Insertar datos en la tabla staff */
-insert into staff (first_name, last_name, address_id2, picture, email, store_id, active, username, password, last_update) values
+insert into staff (first_name, last_name, address_id, picture, email, store_id, active, username, password, last_update) values
 ('John', 'Doe', 1, 'john.jpg', 'john.doe@example.com', 1, true, 'johndoe', 'password', now()),
 ('Jane', 'Smith', 2, 'jane.jpg', 'jane.smith@example.com', 2, true, 'janesmith', 'password', now());
 
 /* Insertar datos en la tabla customer */
-insert into customer (store_id2, first_name, last_name, email, address_id3, active, create_date, last_update) values
+insert into customer (store_id2, first_name, last_name, email, address_id, active, create_date, last_update) values
 (1, 'Bob', 'Johnson', 'bob.johnson@example.com', 3, true, now(), now()),
 (2, 'Alice', 'Williams', 'alice.williams@example.com', 1, true, now(), now());
 
@@ -206,7 +206,7 @@ insert into film (title, description, release_year, language_id, original_langua
 ('El Mariachi', 'Un músico solitario busca venganza en una ciudad fronteriza', '1992-09-04', 3, null, 7, 2, 81, 9.99, 'R', 'Comentarios', now());
 
 /* Insertar datos en la tabla inventory */
-INSERT INTO inventory (film_id, store_id3, last_update) VALUES
+INSERT INTO inventory (film_id, store_id, last_update) VALUES
 (1, 1, NOW()),
 (2, 2, NOW()),
 (3, 1, NOW());
@@ -217,7 +217,7 @@ INSERT INTO rental (rental_date, inventory_id, customer_id, staff_id, last_updat
 ('2022-02-01', 2, 2, 2, NOW());
 
 /* Insertar datos en la tabla payment */
-INSERT INTO payment (customer_id2, staff_id2, rental_id, amount, payment_date, last_update) VALUES
+INSERT INTO payment (customer_id, staff_id, rental_id, amount, payment_date, last_update) VALUES
 (1, 1, 1, 4.99, '2022-01-02', NOW()),
 (2, 2, 2, 3.99, '2022-02-02', NOW());
 
@@ -229,7 +229,7 @@ INSERT INTO category (name, last_update) VALUES
 ('Sci-Fi', NOW());
 
 /* Insertar datos en la tabla film_category */
-INSERT INTO film_category (film_id2, category_id, last_update) VALUES
+INSERT INTO film_category (film_id, category_id, last_update) VALUES
 (1, 1, NOW()),
 (2, 2, NOW()),
 (3, 3, NOW());
@@ -242,7 +242,7 @@ INSERT INTO actor (first_name, last_name, last_update) VALUES
 ('Johnny', 'Null', NOW());
 
 /* Insertar datos en la tabla film_actor */
-INSERT INTO film_actor (film_id3, actor_id, last_update) VALUES
+INSERT INTO film_actor (film_id, actor_id, last_update) VALUES
 (1, 1, NOW()),
 (2, 2, NOW()),
 (3, 3, NOW());

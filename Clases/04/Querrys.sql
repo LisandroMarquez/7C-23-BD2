@@ -21,13 +21,13 @@ Where f.replacement_cost = 24;
 /* 4 */
 
 Select f.title, c.name, f.rating
-From film f Join film_category fc on f.id = fc.film_id2 Join category c on fc.category_id = c.id
+From film f Join film_category fc on f.id = fc.film_id Join category c on fc.category_id = c.id
 Where f.special_features = "Behing the Scenes";
 
 /* 5 */
 
 Select a.first_name, a.last_name
-From actor a Join film_actor fa on a.id = fa.actor_id Join film f on fa.film_id3 = f.id
+From actor a Join film_actor fa on a.id = fa.actor_id Join film f on fa.film_id = f.id
 Where f.title = 'ZOOLANDER FICTION';
 
 /* 6 */
@@ -46,5 +46,5 @@ Order by f.rating, f.title;
 /* 8 */
 
 Select f.title, concat(st.first_name, ' ', st.last_name) as full_name
-From film f Join inventory i on f.id = i.film_id Join store s on i.store_id3 = s.id Join staff st on s.id = st.store_id
+From film f Join inventory i on f.id = i.film_id Join store s on i.store_id = s.id Join staff st on s.id = st.store_id
 Where s.id = 2;
