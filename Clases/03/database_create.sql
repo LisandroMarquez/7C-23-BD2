@@ -28,7 +28,7 @@ create table address(
 	phone varchar(20),
 	location varchar(50),
 	last_update datetime,
-	constraint city_id foreign key (city_id) references city(id));
+	constraint city_id1 foreign key (city_id) references city(id));
 describe address;
 
 create table store(
@@ -36,7 +36,7 @@ create table store(
 	manager_staff_id int,
 	address_id int,
 	last_update datetime,
-	constraint address_id foreign key (address_id) references address(id));
+	constraint address_id1 foreign key (address_id) references address(id));
 describe store;
 
 create table staff(
@@ -52,7 +52,7 @@ create table staff(
 	password varchar(30),
 	last_update datetime,
 	constraint address_id2 foreign key (address_id) references address(id),
-	constraint store_id foreign key (store_id) references store(id));
+	constraint store_id1 foreign key (store_id) references store(id));
 describe staff;
 
 create table customer(
@@ -89,8 +89,8 @@ create table film(
 	rating varchar(20),
 	special_features varchar(50),
 	last_update datetime,
-	constraint language_id foreign key (language_id) references language(id),
-	constraint original_language_id foreign key (original_language_id) references language(id));
+	constraint language_id1 foreign key (language_id) references language(id),
+	constraint original_language_id1 foreign key (original_language_id) references language(id));
 describe film;
 
 create table inventory(
@@ -98,7 +98,7 @@ create table inventory(
 	film_id int,
 	store_id int,
 	last_update datetime,
-	constraint film_id foreign key (film_id) references film(id),
+	constraint film_id1 foreign key (film_id) references film(id),
 	constraint store_id3 foreign key (store_id) references store(id));
 describe inventory;
 
@@ -110,9 +110,9 @@ create table rental(
 	return_date date,
 	staff_id int,
 	last_update datetime,
-	constraint inventory_id foreign key (inventory_id) references inventory(id),
-	constraint customer_id foreign key (customer_id) references customer(id),
-	constraint staff_id foreign key (staff_id) references staff(id));
+	constraint inventory_id1 foreign key (inventory_id) references inventory(id),
+	constraint customer_id1 foreign key (customer_id) references customer(id),
+	constraint staff_id1 foreign key (staff_id) references staff(id));
 describe rental;
 
 create table payment(
@@ -123,7 +123,7 @@ create table payment(
 	amount float,
 	payment_date datetime,
 	last_update datetime,
-	constraint rental_id foreign key (rental_id) references rental(id),
+	constraint rental_id1 foreign key (rental_id) references rental(id),
 	constraint customer_id2 foreign key (customer_id) references customer(id),
 	constraint staff_id2 foreign key (staff_id) references staff(id));
 describe rental;
@@ -140,7 +140,7 @@ create table film_category(
 	category_id int,
 	last_update datetime,
 	constraint film_id2 foreign key (film_id) references film(id),
-	constraint category_id foreign key (category_id) references category(id));
+	constraint category_id1 foreign key (category_id) references category(id));
 describe film_category;
 
 create table actor(
@@ -156,7 +156,7 @@ create table film_actor(
 	actor_id int,
 	last_update datetime,
 	constraint film_id3 foreign key (film_id) references film(id),
-	constraint actor_id foreign key (actor_id) references actor(id));
+	constraint actor_id1 foreign key (actor_id) references actor(id));
 describe film_actor;
 
 -- INSERTS
@@ -183,7 +183,7 @@ insert into staff (first_name, last_name, address_id, picture, email, store_id, 
 ('John', 'Doe', 1, 'john.jpg', 'john.doe@example.com', 1, true, 'johndoe', 'password', now()),
 ('Jane', 'Smith', 2, 'jane.jpg', 'jane.smith@example.com', 2, true, 'janesmith', 'password', now());
 
-insert into customer (store_id2, first_name, last_name, email, address_id, active, create_date, last_update) values
+insert into customer (store_id, first_name, last_name, email, address_id, active, create_date, last_update) values
 (1, 'Bob', 'Johnson', 'bob.johnson@example.com', 3, true, now(), now()),
 (2, 'Alice', 'Williams', 'alice.williams@example.com', 1, true, now(), now());
 
