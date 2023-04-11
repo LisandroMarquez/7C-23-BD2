@@ -38,10 +38,10 @@ Where s.id = 1;
 
 -- 7
 
-Select f.title, f.rating
-From film f
-Group by f.rating
-Order by f.rating, f.title;
+Select f1.title, f1.rating, f2.title, f2.rating
+From film f1, film f2
+Where f1.rating = f2.rating and f1.id <> f2.id
+Order by f1.title;
 
 -- 8
 
