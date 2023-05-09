@@ -16,22 +16,11 @@ Where length <= ALL
 Having count(*) = 1;
 
 -- (3)
--- ALL Querry
-Select CONCAT(c.first_name, ' ', c.last_name) as full_name, a.address, p.amount
+Select CONCAT(c.first_name, ' ', c.last_name) as full_name, a.address, MIN(p.amount) as min_payment
 From customer c
 Join payment p on c.customer_id = p.customer_id
 Join address a on c.address_id = a.address_id
-Where p.amount <= All   (Select p2.amount
-                        From payment p2)
-Order by c.first_name;
-
--- ANY and MIN Querry
-Select CONCAT(c.first_name, ' ', c.last_name) as full_name, a.address, p.amount
-From customer c
-Join payment p on c.customer_id = p.customer_id
-Join address a on c.address_id = a.address_id
-Where p.amount = Any    (Select MIN(p2.amount)
-                        From payment p2)
+Group by c.first_name
 Order by c.first_name;
 
 -- (4)
