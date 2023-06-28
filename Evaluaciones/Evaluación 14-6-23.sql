@@ -30,24 +30,20 @@ HAVING COUNT(ac.actor_id) >= (
 SELECT
     CONCAT(
         cu.first_name,
-        " ",
+        ' ',
         cu.last_name
-    ) as full_name_customer,
-    pa.amount,
-    pa2.amount
-FROM payment pa, payment pa2
-    JOIN customer cu USING(customer_id)
-WHERE cu.first_name NOT IN (
-        SELECT cu2.first_name
-        FROM customer cu2
-        WHERE
-            cu2.first_name LIKE "A%"
-            OR cu2.first_name LIKE "E%"
-            OR cu2.first_name LIKE "I%"
-            OR cu2.first_name LIKE "O%"
-            OR cu2.first_name LIKE "U%"
-    )
-    AND pa.payment_id <> pa2.payment_id
+    ) AS full_name,
+    p1.amount AS amount_1,
+    p2.amount AS amount_2
+FROM
+    customer cu,
+    payment p1,
+    payment p2
+WHERE
+    p1.customer_id = p2.customer_id
+    AND cu.customer_id = p1.customer_id
+    AND p1.amount <> p2.amount
+    AND cu.first_name REGEXP '^[AEIOU]'
 ORDER BY cu.first_name;
 
 -- 3) Listar todas las películas cuya duración no sea ni la máxima ni la mínima, y que no tengan a los actores cuyas IDs son (11, 56, 45, 34, 89). Además, el replacement cost no debe ser el máximo.
