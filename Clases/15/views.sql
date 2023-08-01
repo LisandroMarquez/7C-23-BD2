@@ -114,5 +114,6 @@ SELECT * FROM actor_information;
 
 # 6. Materialized views, write a description, why they are used, alternatives, DBMS were they exist, etc.
 /*
- ASD
+ Las views son tablas almacenadas con datos de otras tablas, a través de consultas, para su uso cómodo y práctico. Son creadas con el fin de tener acceso a cantidades menores de datos de manera cómoda, fácil y práctica, se emplean cuando se va a trabajar con uno grupo reducido de datos de manera reiterada y se requiere su almacenamiento para agilizar las consultas y facilitar el trabajo a la hora de consultar los datos almacenados.
+ Por ello, las views son utilizadas frecuentemente en todas las bases de datos que poseen grandes cantidades de datos o, en su defecto, emplean un grupo de datos de manera reiterada en sus consultas y demás.
  */
