@@ -52,3 +52,47 @@ FROM actor ac
     JOIN film f USING(film_id)
 GROUP BY ac.actor_id
 ORDER BY ac.last_name;
+
+-- 4
+
+SELECT
+    f.title as movie_rented,
+    CONCAT(
+        cu.last_name,
+        ", ",
+        cu.first_name
+    ) as customer_full_name,
+    CASE
+        WHEN r.return_date IS NULL THEN "NO"
+        ELSE "YES"
+    END as returned,
+    r.return_date,
+    r.rental_date
+FROM film f
+    JOIN inventory i USING(film_id)
+    JOIN rental r USING(inventory_id)
+    JOIN customer cu USING(customer_id)
+WHERE
+    MONTH(rental_date) = '05'
+    OR MONTH(rental_date) = '06';
+
+-- 5
+
+/*
+ Las diferencias entre las funciones CONVERT() y CAST() son las siguientes:
+ CAST([value] AS [data_type])
+ CONVERT([value], [data_type])
+ Además, el Convert() permite utilizar codificaciones de caracteres como utf-8 o utf-16 con la siguiente sentencia:
+ CONVERT([value] USING [transcoding_name])
+ */
+
+-- 6
+
+/*
+ METHODS:
+ - ISNULL([expression]) esta funcion devuelve un 1 si la expresion es nula o un 0 en caso contrario.
+ - IFNULL([expression1], [expression2]) esta funcion devuelve la expresion 1 en caso de esta misma no ser nula, en caso contrario, devuelve la expresion 2.
+ - COALESCE([value1], [value2], [value3], ...) esta funcion devuelve el primer valor que no sea nulo de la lista, en caso de ser todos nulos, devuelve NULL
+ NOT SQL METHOD:
+ - NVL() funciona exactamente igual que COALESCE() y es la funcion que no se encuentra dentro de MySQL
+ */
